@@ -27,8 +27,10 @@ mongoose.connect(process.env.CONN_STR, { useNewUrlParser: true, useUnifiedTopolo
 
 
 const app = express();
-// app.set('trust proxy', 1);
-// app.set('trust proxy',true)
+// Behind a hosting proxy (Vercel/Render) the real visitor address arrives in X-Forwarded-For.
+// Trusting that many proxy hops makes req.ip the visitor, not the proxy, which is what
+// rate limiting keys on. Override with TRUST_PROXY_HOPS if your host has more than one hop.
+app.set('trust proxy', Number(process.env.TRUST_PROXY_HOPS) || 1);
 
 app.use(morgan("dev"));
 
