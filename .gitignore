@@ -1,0 +1,18 @@
+node_modules
+dist
+
+# Environment files: real secrets live here. Keep the template tracked.
+.env
+.env.*
+!.env.example
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# OS / editor
+.DS_Store
+.vscode/*
+!.vscode/extensions.json
+.idea
